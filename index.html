@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ApnaBank - Banking Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="top">
+    <div class="logo">🏦 Apna<span>Bank</span></div>
+    <button id="logoutBtn" class="ghost hidden">Logout</button>
+  </header>
+
+  <main>
+
+    <!-- MAIN MENU -->
+    <section id="home" class="screen active">
+      <div class="hero">
+        <h1>Banking made<br>simple &amp; secure</h1>
+        <p>Create an account, deposit, withdraw and track your money in one place.</p>
+      </div>
+      <div class="choices">
+        <button class="card choice" data-go="createScreen">
+          <div class="ico">✨</div>
+          <h3>Create Account</h3>
+          <p>New here? Open your account in seconds.</p>
+        </button>
+        <button class="card choice" data-go="loginScreen">
+          <div class="ico">🔐</div>
+          <h3>Login</h3>
+          <p>Already a customer? Use your account number and PIN.</p>
+        </button>
+      </div>
+    </section>
+
+    <!-- CREATE ACCOUNT -->
+    <section id="createScreen" class="screen">
+      <div class="card narrow">
+        <h2>Create Account</h2>
+        <p class="sub">Fill in your details to open a new account.</p>
+        <form id="createForm">
+          <label for="newName">Full name</label>
+          <input id="newName" type="text" placeholder="e.g. Write your name " required>
+          <label for="newPin">Set a 4-digit PIN</label>
+          <input id="newPin" type="password" inputmode="numeric" maxlength="4" placeholder="password" required>
+          <label for="newBalance">Opening deposit (₹)</label>
+          <input id="newBalance" type="number" min="10" step="10" placeholder="e.g. 100 ">
+          <button class="btn" type="submit">Create Account</button>
+        </form>
+        <p id="createResult" class="result hidden"></p>
+        <button class="ghost back" data-go="home">← Back to menu</button>
+      </div>
+    </section>
+
+    <!-- LOGIN -->
+    <section id="loginScreen" class="screen">
+      <div class="card narrow">
+        <h2>Login</h2>
+        <p class="sub">Enter your account number and PIN.</p>
+        <form id="loginForm">
+          <label for="loginAcc">Account number</label>
+          <input id="loginAcc" type="number" placeholder="e.g. 1001" required>
+          <label for="loginPin">PIN</label>
+          <input id="loginPin" type="password" inputmode="numeric" maxlength="4" placeholder="••••" required>
+          <button class="btn" type="submit">Login</button>
+        </form>
+        <button class="ghost back" data-go="home">← Back to menu</button>
+      </div>
+    </section>
+
+    <!-- DASHBOARD (after login) -->
+    <section id="dashboard" class="screen">
+      <h2 id="welcomeText" class="welcome"></h2>
+      <div class="dash">
+
+        <div class="vcard">
+          <small>SmartBank • Savings</small>
+          <div><small>Available balance</small>
+            <div class="bal" id="vBal"></div>
+          </div>
+          <div>
+            <div class="num" id="vNum"></div>
+            <div id="vName"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="tiles">
+            <button class="tile on" data-panel="deposit"><span>⬇️</span>Deposit</button>
+            <button class="tile" data-panel="withdraw"><span>⬆️</span>Withdraw</button>
+            <button class="tile" data-panel="balance"><span>💰</span>Check Balance</button>
+            <button class="tile" data-panel="details"><span>📄</span>View Details</button>
+          </div>
+
+          <div class="card">
+            <div id="panel-deposit" class="panel on">
+              <h3>Deposit Money</h3>
+              <form id="depositForm">
+                <label for="depAmount">Amount (₹)</label>
+                <input id="depAmount" type="number" min="0" step="0.01" placeholder="Enter amount" required>
+                <button class="btn" type="submit">Deposit</button>
+              </form>
+            </div>
+
+            <div id="panel-withdraw" class="panel">
+              <h3>Withdraw Money</h3>
+              <form id="withdrawForm">
+                <label for="witAmount">Amount (₹)</label>
+                <input id="witAmount" type="number" min="0" step="0.01" placeholder="Enter amount" required>
+                <button class="btn" type="submit">Withdraw</button>
+              </form>
+            </div>
+
+            <div id="panel-balance" class="panel">
+              <h3>Check Balance</h3>
+              <p class="sub">Your current balance is</p>
+              <div class="bigbal" id="bigBal"></div>
+            </div>
+
+            <div id="panel-details" class="panel">
+              <h3>Account Details</h3>
+              <div class="row"><span>Account Number</span><b id="dNum"></b></div>
+              <div class="row"><span>Holder Name</span><b id="dName"></b></div>
+              <div class="row"><span>Balance</span><b id="dBal"></b></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast"></div>
+  <script src="script.js"></script>
+</body>
+
+</html>
